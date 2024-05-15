@@ -1,18 +1,11 @@
 package com.pranshu.hibernate.model;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name="projects")
-@NoArgsConstructor
-@Getter
-@Setter
 public class Project {
 
   @Id @GeneratedValue
@@ -31,6 +24,41 @@ public class Project {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userId, name, tasks);
+    return Objects.hash(userId, name);
+  }
+
+  public Project() {
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public Integer getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Integer userId) {
+    this.userId = userId;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public List<Task> getTasks() {
+    return tasks;
+  }
+
+  public void setTasks(List<Task> tasks) {
+    this.tasks = tasks;
   }
 }
