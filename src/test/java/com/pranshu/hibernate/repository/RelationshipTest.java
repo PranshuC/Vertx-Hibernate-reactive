@@ -62,7 +62,7 @@ public class RelationshipTest {
     context.completeNow();
   }
 
-  @Test
+  /*@Test
   void createRelationshipTest(Vertx vertx, VertxTestContext context) {
     ProjectDTO projectDTO = new ProjectDTO(null, 1, "My Project");
     context.verify(() -> {
@@ -76,6 +76,6 @@ public class RelationshipTest {
           context.completeNow();
         });
     });
-  }
+  }*/
 
 }

@@ -14,8 +14,8 @@ public class Task {
   private String content;
   private boolean completed;
   private LocalDateTime createdAt;
-  @ManyToOne @JoinColumn(name = "projectId", nullable = true)
-  private Project project;
+  //@ManyToOne @JoinColumn(name = "projectId", nullable = true)
+  //private Project project;
 
   @Override
   public boolean equals(Object o) {
@@ -72,11 +72,11 @@ public class Task {
     this.createdAt = createdAt;
   }
 
-  public Project getProject() {
+  /*public Project getProject() {
     return project;
   }
 
   public void setProject(Project project) {
     this.project = project;
-  }
+  }*/
 }

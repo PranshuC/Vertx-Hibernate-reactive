@@ -1,0 +1,16 @@
+IF "my_postgres" IS ALREADY NOT AVAILABLE IN Containers LIST IN Docker, TERMINAL COMMAND :
+
+docker run -d \
+  --name my_postgres \
+  -e POSTGRES_PASSWORD=password \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_DB=postgres \
+  -p 5432:5432 \
+  postgres
+
+
+THEN, WITHIN DB CLIENT, DATABASE COMMANDS :
+
+CREATE DATABASE hibernate;
+# List all databases in postgresSQL
+SELECT datname FROM pg_database;

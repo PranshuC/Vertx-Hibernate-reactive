@@ -62,7 +62,7 @@ public class TaskRepositoryImplTest {
 
   @Test
   void createTaskTest(Vertx vertx, VertxTestContext context) {
-    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now(), null);
+    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now());
     context.verify(() -> {
       repository.createTask(taskDTO)
         .onFailure(context::failNow)
@@ -89,7 +89,7 @@ public class TaskRepositoryImplTest {
 
   @Test
   void findTaskByIdExistsTest(Vertx vertx, VertxTestContext context) {
-    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now(), null);
+    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now());
     context.verify(() -> {
       repository.createTask(taskDTO)
         .compose(r -> repository.findTaskById(r.id()))
@@ -106,7 +106,7 @@ public class TaskRepositoryImplTest {
     // 1. Create a new task
     // 2. Delete a task
     // 3. Retrieve a task with its identifier
-    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now(), null);
+    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now());
     context.verify(() -> {
       repository.createTask(taskDTO)
         .compose(r -> {
@@ -123,12 +123,12 @@ public class TaskRepositoryImplTest {
 
   @Test
   void updateTaskTest(Vertx vertx, VertxTestContext context) {
-    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now(), null);
+    TaskDTO taskDTO = new TaskDTO(null, 1, "My Task", false, LocalDateTime.now());
     context.verify(() -> {
       repository.createTask(taskDTO)
         .compose(r -> {
           Assertions.assertEquals(1, r.id());
-          TaskDTO updatedTask = new TaskDTO(1, r.userId(), "updated content", true, r.createdAt(), null);
+          TaskDTO updatedTask = new TaskDTO(1, r.userId(), "updated content", true, r.createdAt());
           return repository.updateTask(updatedTask);
         }).compose(r -> {
           Assertions.assertTrue(r.completed());
@@ -147,9 +147,9 @@ public class TaskRepositoryImplTest {
 
   @Test
   void findTasksByUserTest(Vertx vertx, VertxTestContext context) {
-    TaskDTO task1 = new TaskDTO(null, 1, "Task 1", false, LocalDateTime.now(), null);
-    TaskDTO task2 = new TaskDTO(null, 1, "Task 2", true, LocalDateTime.now(), null);
-    TaskDTO task3 = new TaskDTO(null, 2, "Task 3", false, LocalDateTime.now(), null);
+    TaskDTO task1 = new TaskDTO(null, 1, "Task 1", false, LocalDateTime.now());
+    TaskDTO task2 = new TaskDTO(null, 1, "Task 2", true, LocalDateTime.now());
+    TaskDTO task3 = new TaskDTO(null, 2, "Task 3", false, LocalDateTime.now());
     CompositeFuture createTasks = CompositeFuture.join(repository.createTask(task1), repository.createTask(task2), repository.createTask(task3));
     context.verify(() -> {
       createTasks.compose(r -> {

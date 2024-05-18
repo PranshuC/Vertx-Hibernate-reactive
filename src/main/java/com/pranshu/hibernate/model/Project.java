@@ -12,8 +12,8 @@ public class Project {
   private Integer id;
   private Integer userId;
   private String name;
-  @OneToMany(mappedBy = "project")
-  private List<Task> tasks;
+  //@OneToMany(mappedBy = "project")
+  //private List<Task> tasks;
 
   @Override
   public boolean equals(Object o) {
@@ -54,11 +54,11 @@ public class Project {
     this.name = name;
   }
 
-  public List<Task> getTasks() {
+  /*public List<Task> getTasks() {
     return tasks;
   }
 
   public void setTasks(List<Task> tasks) {
     this.tasks = tasks;
-  }
+  }*/
 }

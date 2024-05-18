@@ -43,23 +43,10 @@ public record ProjectRepositoryImpl(Stage.SessionFactory sessionFactory) impleme
   @Override
   public Future<Optional<ProjectDTO>> findProjectById(Integer id) {
     ProjectDTOMapper dtoMapper = new ProjectDTOMapper();
-    CompletionStage<Project> result = sessionFactory().withTransaction((s, t) -> s.find(Project.class, id));
+    CompletionStage<Project> result = sessionFactory.withTransaction((s, t) -> s.find(Project.class, id));
     Future<Optional<ProjectDTO>> future = Future.fromCompletionStage(result)
       .map(r -> Optional.ofNullable(r))
       .map(r -> r.map(dtoMapper));
-    return future;
-  }
-
-  @Override
-  public Future<Void> removeProject(Integer id) {
-    CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
-    CriteriaDelete<Project> criteriaDelete = criteriaBuilder.createCriteriaDelete(Project.class);
-    Root<Project> root = criteriaDelete.from(Project.class);
-    Predicate predicate = criteriaBuilder.equal(root.get("id"), id);
-    criteriaDelete.where(predicate);
-    // SQL query : DELETE FROM projects WHERE id = [id]
-    CompletionStage<Integer> result = sessionFactory.withTransaction((s,t) -> s.createQuery(criteriaDelete).executeUpdate());
-    Future<Void> future = Future.fromCompletionStage(result).compose(r -> Future.succeededFuture());
     return future;
   }
 
@@ -75,6 +62,19 @@ public record ProjectRepositoryImpl(Stage.SessionFactory sessionFactory) impleme
     Future<ProjectsList> future = Future.fromCompletionStage(result)
       .map(list -> list.stream().map(dtoMapper).collect(Collectors.toList()))
       .map(list -> new ProjectsList(list));
+    return future;
+  }
+
+  @Override
+  public Future<Void> removeProject(Integer id) {
+    CriteriaBuilder criteriaBuilder = sessionFactory.getCriteriaBuilder();
+    CriteriaDelete<Project> criteriaDelete = criteriaBuilder.createCriteriaDelete(Project.class);
+    Root<Project> root = criteriaDelete.from(Project.class);
+    Predicate predicate = criteriaBuilder.equal(root.get("id"), id);
+    criteriaDelete.where(predicate);
+    // SQL query : DELETE FROM projects WHERE id = [id]
+    CompletionStage<Integer> result = sessionFactory.withTransaction((s,t) -> s.createQuery(criteriaDelete).executeUpdate());
+    Future<Void> future = Future.fromCompletionStage(result).compose(r -> Future.succeededFuture());
     return future;
   }
 

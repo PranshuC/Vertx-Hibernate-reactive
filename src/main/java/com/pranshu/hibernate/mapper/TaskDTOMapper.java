@@ -10,8 +10,8 @@ public class TaskDTOMapper implements Function<Task, TaskDTO> {
 
   @Override
   public TaskDTO apply(Task task) {
-    ProjectDTOMapper projectDTOMapper = new ProjectDTOMapper();
-    return new TaskDTO(task.getId(), task.getUserId(), task.getContent(), task.isCompleted(), task.getCreatedAt(),
-      Optional.of(projectDTOMapper.apply(task.getProject())));
+    //ProjectDTOMapper projectDTOMapper = new ProjectDTOMapper();
+    return new TaskDTO(task.getId(), task.getUserId(), task.getContent(), task.isCompleted(), task.getCreatedAt());
+      //Optional.of(projectDTOMapper.apply(task.getProject())));
   }
 }
