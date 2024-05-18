@@ -1,17 +1,14 @@
-package com.pranshu.hibernate.repository;
+package com.pranshu.hibernate.mapper;
 
 import com.pranshu.hibernate.dto.ProjectDTO;
-import com.pranshu.hibernate.dto.ProjectsList;
 import com.pranshu.hibernate.dto.TaskDTO;
-import com.pranshu.hibernate.dto.TasksList;
 import com.pranshu.hibernate.model.Project;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-class ProjectDTOMapper implements Function<Project, ProjectDTO> {
+public class ProjectDTOMapper implements Function<Project, ProjectDTO> {
 
   @Override
   public ProjectDTO apply(Project project) {

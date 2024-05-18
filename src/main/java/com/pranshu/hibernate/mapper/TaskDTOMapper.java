@@ -1,4 +1,4 @@
-package com.pranshu.hibernate.repository;
+package com.pranshu.hibernate.mapper;
 
 import com.pranshu.hibernate.dto.TaskDTO;
 import com.pranshu.hibernate.model.Task;
@@ -6,7 +6,7 @@ import com.pranshu.hibernate.model.Task;
 import java.util.Optional;
 import java.util.function.Function;
 
-class TaskDTOMapper implements Function<Task, TaskDTO> {
+public class TaskDTOMapper implements Function<Task, TaskDTO> {
 
   @Override
   public TaskDTO apply(Task task) {

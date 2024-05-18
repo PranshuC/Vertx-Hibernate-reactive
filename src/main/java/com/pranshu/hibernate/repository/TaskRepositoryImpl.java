@@ -2,6 +2,8 @@ package com.pranshu.hibernate.repository;
 
 import com.pranshu.hibernate.dto.TaskDTO;
 import com.pranshu.hibernate.dto.TasksList;
+import com.pranshu.hibernate.mapper.TaskDTOMapper;
+import com.pranshu.hibernate.mapper.TaskEntityMapper;
 import com.pranshu.hibernate.model.Task;
 import io.vertx.core.Future;
 import org.hibernate.reactive.stage.Stage;
